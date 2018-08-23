@@ -6,7 +6,7 @@
  *  - для каждого сообщения ждать ответа от сервера
  *  - закрывать соединение
  * Написание клиента включает два тех же самых компонента, что и для сервера: бизнес-логика, настройка и запуск.
- * Для обработки данных клиент также должен наследоваться от производного от ChannelHandler. Здесь мы используем
+ * Для обработки данных клиент также должен наследоваться от производного ChannelHandler. Здесь мы используем
  * SimpleChannelInboundHandler. В нем нам потребуются три метода:
  *  - channelActive() - вызывается, когда соединение с сервером установлено.
  *  - channelRead0() - вызывается, когда сообщение от сервера получено
@@ -27,9 +27,12 @@ import io.netty.util.CharsetUtil;
 @Sharable
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
 
+    /**
+     * Отправляет на сервер сообщение
+     * */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty1 rocks!", CharsetUtil.UTF_8));
     }
 
     @Override

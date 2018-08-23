@@ -3,7 +3,7 @@
  * Как правило Нетти-сервер требует:
  *  - по крайней мере одного ChannelHandler'а. ChannelHandler реализует обработку сервером
  * данных, полученных от клиента.
- *  - Bootstrapping - код запуска и настройки сервера. Как минимум он привязывает серер к порту, по которому будут
+ *  - Bootstrapping - код запуска и настройки сервера. Как минимум, он привязывает серер к порту, по которому будут
  * слушаться входящие запросы на подключение.
  * Так как именно реализации ChannelHandler'а получают уведомления о наступлении событий и реагируют на них, то наш сервер
  * должен реализовывать или его или один из его потомков, в нам случае ChannelInboundHandlerAdapter, в котором определны
@@ -33,6 +33,9 @@ import io.netty.util.CharsetUtil;
 @Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * Принимает от клиента сообщение и отправляет ему его же.
+     * */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
